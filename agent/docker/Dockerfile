@@ -40,7 +40,11 @@ RUN python -m pip install --upgrade --no-cache-dir pip==26.1 && \
     rm -rf /usr/local/lib/python3.14/ensurepip/_bundled/pip-*.whl
 
 # Install Python packages
-RUN pip3 install --no-cache-dir netboxlabs-device-discovery netboxlabs-orb-worker
+RUN pip3 install --no-cache-dir  netboxlabs-orb-worker
+
+# 从本地 wheel 文件安装  
+COPY netboxlabs_device_discovery-*.whl /tmp/  
+RUN pip3 install --no-cache-dir /tmp/netboxlabs_device_discovery-*.whl
 
 ########################################################################
 FROM python:3.14-alpine
