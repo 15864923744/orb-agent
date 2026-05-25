@@ -129,7 +129,7 @@ jobs:
       BUILD_VERSION: ${{ needs.get-next-version.outputs.new-release-version }}
       BUILD_COMMIT: ${{ needs.get-next-version.outputs.short-sha }}
       REGISTRY: docker.io
-      IMAGE_NAME: docker.io/sunhq2026/orb-agent
+      IMAGE_NAME: sunhq2026/orb-agent
     strategy:
       fail-fast: true
       matrix:
