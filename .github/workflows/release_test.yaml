@@ -197,7 +197,7 @@ jobs:
     env:
       BUILD_VERSION: ${{ needs.get-next-version.outputs.new-release-version }}
       REGISTRY: docker.io
-      IMAGE_NAME: netboxlabs/orb-agent
+      IMAGE_NAME: sunhq2026/orb-agent
     steps:
       - name: Download digests
         uses: actions/download-artifact@v4
