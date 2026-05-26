@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: refs/heads/release
+          ref: refs/heads/develop
           fetch-depth: 0      
       - uses: actions/setup-node@v5
         with:
@@ -67,7 +67,7 @@ jobs:
           write-mode: overwrite
           contents: |
             {
-              "branches": "release",
+              "branches": "develop",
               "repositoryUrl": "https://github.com/netboxlabs/orb-agent",
               "debug": "true",
               "tagFormat": "v${version}",
@@ -245,7 +245,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: refs/heads/release
+          ref: refs/heads/develop
           fetch-depth: 0      
       - uses: actions/setup-node@v5
         with:
