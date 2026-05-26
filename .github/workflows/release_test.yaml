@@ -6,7 +6,11 @@ on:
         description: 'Branch to run on'
         required: false
         default: 'release'
-        type: string  
+        type: choice
+        options:
+          - release
+          - develop
+          - main        
   push:
     branches: [ release ]
     paths:
