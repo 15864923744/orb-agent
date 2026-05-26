@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.inputs.branch || 'release' }}  # 新增这行      
+          ref: 'release'  # 新增这行      
       - uses: actions/setup-node@v5
         with:
           node-version: "lts/*"
