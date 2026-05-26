@@ -40,7 +40,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: 'release'  # 新增这行      
+          ref: refs/heads/release
+          fetch-depth: 0      
       - uses: actions/setup-node@v5
         with:
           node-version: "lts/*"
@@ -244,7 +245,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.inputs.branch || 'release' }}  # 新增这行      
+          ref: refs/heads/release
+          fetch-depth: 0      
       - uses: actions/setup-node@v5
         with:
           node-version: "lts/*"
