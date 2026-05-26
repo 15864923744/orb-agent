@@ -1,6 +1,12 @@
 name: Orb Agent - release
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run on'
+        required: false
+        default: 'release'
+        type: string  
   push:
     branches: [ release ]
     paths:
@@ -28,8 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.inputs.branch || 'release' }}  # 新增这行      
+      - uses: actions/setup-node@v5
         with:
           node-version: "lts/*"
       - name: Write package.json
@@ -115,7 +123,7 @@ jobs:
     needs: get-next-version
     if: needs.get-next-version.outputs.new-release-published == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: echo "The new release version is ${{ needs.get-next-version.outputs.new-release-version }} commit ${{ needs.get-next-version.outputs.short-sha }}"
 
   build:
@@ -141,7 +149,7 @@ jobs:
             runner: blacksmith-2vcpu-ubuntu-2404-arm
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
@@ -230,8 +238,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.inputs.branch || 'release' }}  # 新增这行      
+      - uses: actions/setup-node@v5
         with:
           node-version: "lts/*"
       - name: Write package.json
